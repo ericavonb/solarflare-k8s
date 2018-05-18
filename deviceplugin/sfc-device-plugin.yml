@@ -24,62 +24,10 @@ spec:
         name: sfc-device-plugin-ctr
         securityContext:
           privileged: true
-        command: ["./start.sh"]
-        env:
-        - name: ONLOAD_VERSION
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: onload-version
-        - name: REG_EXP_SFC
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: reg-exp-sfc
-        - name: SOCKET_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: socket-name
-        - name: RESOURCE_NAME
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: resource-name
-        - name: K8S_API
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: k8s-api
-        - name: NODE_LABEL_ONLOAD_VERSION
-          valueFrom:
-            configMapKeyRef:
-              name: sfc-configmap
-              key: node-label-onload-version
         volumeMounts:
-          - mountPath: /gopath/run
-            name: docker
-          - mountPath: /gopath/proc
-            name: proc
-          - mountPath: "/root/.ssh/id_rsa"
-            name: ssh-key
-          - mountPath: "/var/lib/kubelet"
-            name: kubelet-socket
-          - mountPath: "/etc/kubernetes/pki"
-            name: pki
+          - mountPath: "/var/lib/kubelet/device-plugins"
+            name: device-plugin
       volumes:
-        - name: docker
-          hostPath:
-            path: /var/run
-        - name: proc
-          hostPath:
-            path: /proc
         - hostPath:
-            path: "/root/.ssh/id_rsa"
-          name: ssh-key
-        - hostPath:
-            path: "/var/lib/kubelet"
-          name: kubelet-socket
-        - hostPath:
-            path: "/etc/kubernetes/pki"
-          name: pki
+            path: "/var/lib/kubelet/device-plugins"
+          name: device-plugin
