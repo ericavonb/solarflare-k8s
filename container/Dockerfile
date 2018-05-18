@@ -3,10 +3,8 @@ USER root
 
 MAINTAINER zkosic@redhat.com
 
-RUN yum install -y epel-release
-RUN yum install -y jq-devel
+RUN yum install -y epel-release && yum install -y jq-devel && yum install -y iputils && yum clean all
 
-#RUN yum install -y net-tools make which rsync lshw docker-client openssh-clients libcurl && yum clean all
 RUN mkdir -p /goroot && curl https://storage.googleapis.com/golang/go1.9.linux-amd64.tar.gz | tar xvzf - -C /goroot --strip-components=1
 
 # Set environment variables.

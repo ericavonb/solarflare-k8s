@@ -111,7 +111,7 @@ func (sfc *sfcNICManager) isOnloadInstallHealthy() bool {
 	healthy := false
 	// If the following command executes without ERROR,Failed we have 
 	// a valid onload installation no need to check for libonload
-	out, _ := ExecCommand("onload", "ping", "-c1", "localhost")
+	out, _ := ExecCommand("onload", "/usr/bin/ping", "-c1", "localhost")
 	fmt.Printf("Onload: %s", out.String());
 	if strings.Contains(out.String(), "ERROR") {
 		fmt.Errorf("onload error, looks like libonload is missing %s", out)
