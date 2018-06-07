@@ -108,9 +108,10 @@ func (sfc *sfcNICManager) discoverSolarflareResources() bool {
 }
 
 func (sfc *sfcNICManager) isOnloadInstallHealthy() bool {
-	healthy := false
+	healthy := true
 	// If the following command executes without ERROR,Failed we have 
 	// a valid onload installation no need to check for libonload
+/*
 	out, _ := ExecCommand("onload", "/usr/bin/ping", "-c1", "localhost")
 	fmt.Printf("Onload: %s", out.String());
 	if strings.Contains(out.String(), "ERROR") {
@@ -127,6 +128,8 @@ func (sfc *sfcNICManager) isOnloadInstallHealthy() bool {
 		fmt.Errorf("onload error, did not receive a packet %s", out)
 	}
 	return healthy
+*/
+        return healthy
 }
 
 
